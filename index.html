@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="h1">Сгенеруй Qr-код!</h1>
+    </div>
+    <!-- ///твоя мама фантастика -->
+    <div>
+        <form id="form" class="topBefore" onsubmit="return false;">
+            <input id="name" type="text" placeholder="Your text here" required autocomplete="off" style="border-bottom: 1px solid white;">
+            <input id="submit" type="submit" value="Show me magic">
+  </form>
+  <div id="qrcode"></div>
+
+  <script>
+      const qrCodeElement = document.querySelector('#qrcode')
+      let value;
+      let qrcode = undefined;
+      function qrCodeGenerator(){
+        value = document.querySelector('#name').value
+        if(qrcode === undefined){
+            qrcode = new QRCode(qrCodeElement,value)
+        }else{
+            qrcode.clear(); // clear the code.
+            qrcode.makeCode(value)
+        }
+        document.querySelector('#name').value = ''
+      }
+
+        document.querySelector('#form').addEventListener('submit',()=>{
+            qrCodeGenerator()
+        })
+
+
+  </script>
+
+    </div>
+    <script src="./qrcode.min.js"></script>
+
+    <!-- киньте бабки на лікування пж -->
+  </body>
+</html>
